@@ -6,7 +6,6 @@ function handleStartDrag(event) {
     //event.stopPropagation()
     
     const draggableItem = event.target
-    console.log(draggableItem.parentElement)
     const draggableArea = draggableItem.parentElement.getBoundingClientRect()
     const boundingBox = draggableItem.getBoundingClientRect()
     const mouseOffsetX = event.pageX - boundingBox.left
