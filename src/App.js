@@ -18,11 +18,13 @@ function Square() {
 function App() {
   return (
     <div className="App">
+      <div style={{margin:'50px', padding:'150px'}}>
       <DraggableArea width={500} height={300} >
         <DraggableItem>
           <Square />
         </DraggableItem>
       </DraggableArea>
+      </div>
     </div>
   );
 }

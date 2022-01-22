@@ -4,9 +4,9 @@ import { createUseStyles } from 'react-jss';
 
 function handleStartDrag(event) {
     //event.stopPropagation()
-    
     const draggableItem = event.target
     const draggableArea = draggableItem.parentElement.getBoundingClientRect()
+    
     const boundingBox = draggableItem.getBoundingClientRect()
     const mouseOffsetX = event.pageX - boundingBox.left
     const mouseOffsetY = event.pageY - boundingBox.top
@@ -14,12 +14,12 @@ function handleStartDrag(event) {
       x:draggableArea.left, y:draggableArea.top
     }
     function moveAt(pageX, pageY){
-      const tx = pageX - mouseOffsetX 
-      const ty = pageY - mouseOffsetY
-      if(tx >= draggableArea.left && (tx + boundingBox.width) <= draggableArea.right) {
+      const tx = pageX - mouseOffsetX - draggableArea.left
+      const ty = pageY - mouseOffsetY - draggableArea.top
+      if(tx >= 0 && (tx + boundingBox.width) <= draggableArea.width) {
         currentPosition.x = tx
       }
-      if(ty >= draggableArea.top && (ty + boundingBox.height) <= draggableArea.bottom){
+      if(ty >= 0 && (ty + boundingBox.height) <= draggableArea.height){
         currentPosition.y = ty
       }
       draggableItem.style.transform = `matrix(1,0,0,1,${currentPosition.x},${currentPosition.y})`
@@ -34,7 +34,7 @@ function handleStartDrag(event) {
       document.addEventListener('mousemove', onMouseMove)
       moveAt(event.pageX, event.pageY)
     }
-    
+
 
     document.onmouseup = function(){
       document.removeEventListener('mousemove', onMouseMove)
@@ -50,7 +50,8 @@ const useStyles = createUseStyles({
         boxSizing:'border-box',
         width: props.width + 'px',
         height: props.height + 'px',
-        border: '1px solid black'
+        border: '1px solid black',
+        margin: '50px'
     })
 })
 function DraggableArea(props){
