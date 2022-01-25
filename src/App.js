@@ -6,7 +6,8 @@ import DraggableItem from './components/DragAndDrop/DraggableItem';
 
 const square = {
   height: '50px',
-  width: '50px'
+  width: '50px',
+  border: '1px solid red'
 }
 
 function Square() {
@@ -23,6 +24,7 @@ function App() {
         <DraggableItem>
           <Square />
         </DraggableItem>
+        <Square draggable/>
       </DraggableArea>
       </div>
     </div>
